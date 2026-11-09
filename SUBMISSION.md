@@ -9,7 +9,7 @@ Repo đề bài dùng chung Level 2: `K5-L2-Day02-ObjectDetection`.
 Tên repo bài nộp:
 
 ```text
-K5-L2-DAY02-HoVaTen-MSSV-ObjectDetection
+K5-L2A-DAY02-HoVaTen-MSSV-ObjectDetection
 ```
 
 Nếu lớp dùng tên riêng, thay `L2` bằng `L2A` hoặc `L2B`. Ví dụ: `K5-L2B-DAY02-NguyenVanAn-2A20260000-ObjectDetection`. Viết tên không dấu, không khoảng trắng, phân cách bằng dấu `-`; ngày dùng `DAY02`.
