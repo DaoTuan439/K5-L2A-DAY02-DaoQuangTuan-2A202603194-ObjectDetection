@@ -1,7 +1,7 @@
 task: detect
 mode: train
 model: yolo26n.pt
-data: /content/Day2-Lab/data.yaml
+data: Day2-Lab/data.yaml
 epochs: 50
 time: null
 patience: 100
@@ -10,9 +10,9 @@ imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: "0"
-workers: 8
-project: /content/Day2-Lab/outputs/yolo26_runs
+device: cpu
+workers: 0
+project: Day2-Lab/outputs/yolo26_runs
 name: vehicle_annotation
 exist_ok: true
 pretrained: true
@@ -32,7 +32,7 @@ profile: false
 freeze: null
 multi_scale: 0.0
 compile: false
-channels_last: null
+channels_last: false
 overlap_mask: true
 mask_ratio: 4
 dropout: 0.0
@@ -40,13 +40,12 @@ val: true
 split: val
 save_json: false
 conf: null
-iou: null
+iou: 0.7
 max_det: 300
 quantize: null
 dnn: false
 plots: true
-nms: null
-tile: false
+end2end: null
 source: null
 vid_stride: 1
 stream_buffer: false
@@ -66,11 +65,13 @@ show_conf: true
 show_boxes: true
 line_width: null
 format: torchscript
+keras: false
 optimize: false
 dynamic: false
 simplify: true
 opset: null
 workspace: null
+nms: false
 lr0: 0.01
 lrf: 0.01
 momentum: 0.937
@@ -112,4 +113,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
-save_dir: /content/Day2-Lab/outputs/yolo26_runs/vehicle_annotation
+save_dir: Day2-Lab/outputs/yolo26_runs/vehicle_annotation
