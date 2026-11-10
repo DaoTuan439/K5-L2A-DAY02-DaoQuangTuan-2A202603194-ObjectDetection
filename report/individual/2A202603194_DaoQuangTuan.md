@@ -27,11 +27,18 @@ Chi tiết ở [GUIDELINE_MINI.md](../../GUIDELINE_MINI.md).
 - Số file nhãn train: 50 file (`dataset/labels/train/drive_001.txt` … `drive_050.txt`), tổng 718 box: car 571, van 45, truck 22, bus 80.
 - Kết quả checker và lỗi đã xử lý: `python tools/check_yolo_labels.py` → `ĐẠT cấu trúc: 50/50 file nhãn hợp lệ`. Trên Windows cần đặt `PYTHONIOENCODING=utf-8` để script in được tiếng Việt (lỗi hiển thị, không phải lỗi nhãn).
 - Công cụ gán nhãn: CVAT (local), xuất định dạng Ultralytics YOLO Detection 1.0.
-- Danh sách ảnh đã rà bằng mắt: `drive_018`, `drive_028`, `drive_040`, `drive_050` _(bổ sung thêm các ảnh đã tự rà để đủ 10)_.
+- Danh sách ảnh đã rà bằng mắt (10 ảnh): `drive_009`, `drive_018`, `drive_024`, `drive_026`, `drive_027`, `drive_028`, `drive_038`, `drive_040`, `drive_041`, `drive_050`.
+  - `drive_040`, `drive_050` rà trong lúc gán nhãn; tám ảnh còn lại rà **sau khi nhận gold**, bằng ảnh overlay box của mình chồng lên box gold (chọn các ảnh có nhiều FP/FN nhất).
 - Lỗi phát hiện khi rà và cách sửa:
   - `drive_040`: xe buýt nối toa ban đầu vẽ bằng polygon xoay → vẽ lại bằng box chữ nhật thẳng; xe buýt xanh góc trên trái bị gán nhầm `car`.
   - `drive_050`: một box gộp SUV nâu và xe trắng phía sau → cần tách hai box.
-  - `drive_018`, `drive_028`: box lỏng (box xe trắng góc dưới phải `drive_028` rộng hơn thân xe nhiều).
+  - `drive_018`, `drive_028`: box lỏng (box xe trắng góc dưới phải `drive_028` rộng hơn thân xe nhiều); gán xe đỗ ven đường mà gold không gán.
+  - `drive_009`: box các xe buýt lỏng, nhất là xe buýt đỏ trắng phía trước (box kéo quá thân xe); gán thêm xe đỗ góc trên phải.
+  - `drive_024`, `drive_027` (cùng một cảnh): sót nhiều xe con nhỏ ở hàng xe phía xa bên trái; box taxi vàng ở giữa bị lệch; gán thêm xe đỗ ở mép trên ảnh.
+  - `drive_026`: sót nhiều xe trong hàng xe buýt và xe con dày đặc bên trái; box xe buýt vàng nối toa bị lỏng; box taxi bị cắt ở mép phải không khớp gold.
+  - `drive_038`: sót bốn xe ở mép dưới ảnh (xe trắng, xe đen và hai xe bị cắt khung); box xe cứu hộ hơi lỏng.
+  - `drive_041`: sót nhiều xe con nhỏ trong cụm xe phía xa; box xe buýt nối toa và xe cứu thương lỏng; box xe đỏ góc dưới phải bị lệch lên.
+  - Các lỗi rà sau gold chưa sửa trong nhãn nộp (xem mục 4, vòng rework tiếp theo).
 - Commit khóa nhãn ban đầu: `992da19`.
 
 ## 4. Gold QC và rework
